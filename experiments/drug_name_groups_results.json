@@ -1,0 +1,271 @@
+{
+  "coverage": {
+    "reports_mentioning_a_listed_drug": 0.23412384520096116,
+    "serious_reports_mentioning_a_listed_drug": 0.2683544303797468
+  },
+  "variants": {
+    "class_tokens": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 297,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 6,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 155,
+          "only_a": 2,
+          "only_b": 0,
+          "neither": 146,
+          "mcnemar_exact_p": 0.5
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 275,
+          "only_a": 1,
+          "only_b": 1,
+          "neither": 26,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 12,
+          "mcnemar_exact_p": 1.0
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 1,
+          "neither": 3,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.94894753377317,
+        "unharmed_flagged_at_cutoff": 0.14302701575049545,
+        "non_serious_labelled_serious": 21,
+        "serious_vs_unharmed_auroc": 0.9826342783593524
+      }
+    },
+    "class_replace": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 297,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 6,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 156,
+          "only_a": 1,
+          "only_b": 3,
+          "neither": 143,
+          "mcnemar_exact_p": 0.625
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 276,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 25,
+          "mcnemar_exact_p": 0.5
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 12,
+          "mcnemar_exact_p": 1.0
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 1,
+          "neither": 3,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.9481621112158342,
+        "unharmed_flagged_at_cutoff": 0.14177532074684468,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827703944516917
+      }
+    },
+    "context_clusters": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 297,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 6,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 154,
+          "only_a": 3,
+          "only_b": 1,
+          "neither": 145,
+          "mcnemar_exact_p": 0.625
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 275,
+          "only_a": 1,
+          "only_b": 2,
+          "neither": 25,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 12,
+          "mcnemar_exact_p": 1.0
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 1,
+          "neither": 3,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.9492617027961043,
+        "unharmed_flagged_at_cutoff": 0.14313132366746636,
+        "non_serious_labelled_serious": 21,
+        "serious_vs_unharmed_auroc": 0.9828715318997983
+      }
+    }
+  },
+  "context_clusters_last_fold": {
+    "cluster_0": [
+      "oxycodone (opioid)",
+      "apixaban (anticoagulant)",
+      "warfarin (anticoagulant)",
+      "doxycycline (antibiotic)",
+      "vancomycin (antibiotic)",
+      "potassium phosphate (electrolyte)",
+      "unknown medication (unknown)",
+      "amoxicillin-clavulanate (antibiotic)",
+      "metoprolol (antihypertensive)",
+      "famotidine (antihistamine_acid)",
+      "budesonide-formoterol (corticosteroid)"
+    ],
+    "cluster_1": [
+      "hydromorphone (opioid)",
+      "diphenhydramine (antihistamine_acid)",
+      "morphine (opioid)",
+      "milrinone (vasoactive)",
+      "clonidine (antihypertensive)",
+      "dexamethasone (corticosteroid)"
+    ],
+    "cluster_2": [
+      "enoxaparin (anticoagulant)",
+      "heparin (anticoagulant)",
+      "insulin lispro (insulin)",
+      "cefazolin (antibiotic)",
+      "ceftriaxone (antibiotic)",
+      "cefepime (antibiotic)",
+      "piperacillin-tazobactam (antibiotic)",
+      "acetaminophen (analgesic_nonopioid)",
+      "secukinumab (immunomodulator)",
+      "pegfilgrastim (immunomodulator)",
+      "venetoclax (chemotherapy)",
+      "clindamycin (antibiotic)",
+      "levofloxacin (antibiotic)",
+      "sulfamethoxazole-trimethoprim (antibiotic)",
+      "furosemide (diuretic)",
+      "ampicillin (antibiotic)",
+      "tocilizumab (immunomodulator)",
+      "insulin regular (insulin)"
+    ],
+    "cluster_3": [
+      "meropenem (antibiotic)",
+      "metronidazole (antibiotic)",
+      "ciprofloxacin (antibiotic)"
+    ],
+    "cluster_4": [
+      "lactated ringers injection (iv_fluid)"
+    ],
+    "cluster_5": [
+      "epinephrine (vasoactive)",
+      "tacrolimus (immunomodulator)",
+      "calcium gluconate (electrolyte)"
+    ],
+    "cluster_6": [
+      "fentanyl (opioid)",
+      "iohexol (contrast)"
+    ],
+    "cluster_7": [
+      "aspirin (antiplatelet)",
+      "bumetanide (diuretic)",
+      "ibuprofen (analgesic_nonopioid)"
+    ]
+  }
+}

@@ -14,6 +14,11 @@ written up in [PIPELINE.md](../PIPELINE.md).
 | `finetune_distilbert.py` | DistilBERT fine-tuned on the 3 buckets | Macro F1 0.79 vs. production's 0.82; still a candidate |
 | `leakage_inflation_check.py` | Effect of adding the two post-review fields back into the input | Little effect on this synthetic data |
 | `longformer_colab.ipynb` | Clinical-Longformer on the 3 buckets, for Colab | Stale: predates the leakage fix and date split |
+| `quiet_serious_misses.py` | Hedged-phrasing features and a second-stage check, to catch serious cases that read like near misses | Rejected; side finding on stop words still open |
+| `drug_name_groups.py` | Grouping the 47 drug names by hand-mapped class or by context clusters | Rejected, no measurable effect |
+
+The last two run on the rolling evaluation (`rolling_evaluation.py`) and write
+their aggregate results next to themselves as `*_results.json`.
 
 Run them as modules from the repo root, so they can import `data_pipeline`
 and so their relative output paths resolve there:

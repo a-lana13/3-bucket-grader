@@ -303,12 +303,23 @@ synthetic set.
       Bio_ClinicalBERT, jointly fine-tuned for event type and severity. The
       frozen-MiniLM version was too weak to show whether the event-type clue
       helps a stronger model.
-- [ ] **Target the "quiet" serious misses.** Try features for hedged,
-      potential-harm phrasing, or a second-stage check for reports that
-      mention a high-risk medication or event but score low. Wait until the
-      sponsor answers whether these are real or label noise.
-- [ ] **Cluster drug names.** Medication fields are in the input, but semantic
-      grouping of drug names hasn't been built.
+- [x] **Target the "quiet" serious misses.** Tested on the rolling evaluation
+      (`experiments/quiet_serious_misses.py`); nothing adopted. Hedge-phrase
+      features and high-risk word rules cost more false alarms than they
+      recover, and the rules do no better than lowering the cutoff. A separate
+      serious-case detector recovered 5 of the 6 misses but flags 22% of
+      unharmed reports instead of 14%, and its edge over a lowered cutoff
+      (3 cases) isn't statistically reliable. Still open: whether these cases
+      are real or label noise (see below).
+- [x] **Cluster drug names.** Tested (`experiments/drug_name_groups.py`); no
+      effect. Hand-mapped drug classes and context-based clusters each change
+      at most 3 of 303 serious cases on any measure.
+- [ ] **Keep negations and modals in the vocabulary.** The vectorizer's stop
+      list removes "no", "not", "could" and "would". Keeping them left hurt
+      recall unchanged (94.8% → 95.0%) while flagging fewer unharmed reports
+      (14.1% → 12.5%) in the rolling evaluation. A side finding of the
+      quiet-misses experiment, not yet applied to production or checked on
+      October.
 
 ### Needs sponsor input
 

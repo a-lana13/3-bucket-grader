@@ -63,7 +63,7 @@ It writes `vectorizer.joblib`, `model.joblib`, `calibrator.joblib`, `config.json
 
 ### Everything else is a retired or one-off experiment
 
-Everything in `experiments/` (`baseline_grader.py`, `ordinal_vs_coarse.py`, `finetune_distilbert.py`, `combined_mtl.py`, `augment_rare_grades.py`, `leakage_inflation_check.py`, `longformer_colab.ipynb`) is kept for history and documented in `PIPELINE.md` and `experiments/README.md`. None of it is part of the pipeline. `PIPELINE.md` and code comments refer to these files by bare filename. `combined_mtl_results.json` stays in the repo root, where `combined_mtl.py` writes it. Notes:
+Everything in `experiments/` (`baseline_grader.py`, `ordinal_vs_coarse.py`, `finetune_distilbert.py`, `combined_mtl.py`, `augment_rare_grades.py`, `leakage_inflation_check.py`, `longformer_colab.ipynb`, `quiet_serious_misses.py`, `drug_name_groups.py`) is kept for history and documented in `PIPELINE.md` and `experiments/README.md`. None of it is part of the pipeline. `PIPELINE.md` and code comments refer to these files by bare filename. `combined_mtl_results.json` stays in the repo root, where `combined_mtl.py` writes it. Notes:
 
 - `leakage_inflation_check.py` reads the excluded columns on purpose, to measure their effect.
 - `longformer_colab.ipynb` predates the leakage fix and date split (random split, 3-bucket only); its comparison table is stale.

@@ -611,6 +611,89 @@ What this does and does not show:
 - **The 2 October misses match production** (18/20 flagged, 15/20 labelled
   `serious` = the 0.75 recall in `evaluation.json`).
 
+### Tested and rejected: targeting the "quiet" serious misses (2026-10-13)
+
+`quiet_serious_misses.py`, on the rolling evaluation, each variant paired
+against the production model on the same 303 serious cases. Results in
+`experiments/quiet_serious_misses_results.json`.
+
+Limits on what this could show: only 6 of 303 serious cases fall below the
+triage cutoff, so no method can demonstrate a reliable gain there. The other
+two measures are the `serious` label and the catch rate at a 5% false-alarm
+rate. Whether the quiet cases are real or label noise is still an open
+sponsor question; several of the six read as plain near misses.
+
+**A. Features for hedged phrasing.** The production vectorizer removes
+English stop words, which include "no", "not", "could", "would" and "may", so
+"could have" and "no harm" never reach the model.
+
+| Variant | Serious flagged | Labelled `serious` | Caught at 5% false alarms | Hurt recall | Unharmed flagged | Non-serious labelled `serious` |
+|---|---|---|---|---|---|---|
+| Production | 297/303 | 157/303 | 276/303 | 94.8% | 14.1% | 22 |
+| Keep all stop words | 293 | 154 | 281 | 94.6% | 11.2% | 18 |
+| Keep negations and modals | 295 | 160 | 280 | 95.0% | 12.5% | 19 |
+| Hedge-phrase indicator features | 299 | 172 | 276 | 94.8% | 20.3% | 71 |
+
+- No stop-word variant changes a serious-tier measure reliably (McNemar
+  p >= 0.18 on every one).
+- The hedge-phrase features label 15 more serious cases `serious` (p = 0.017,
+  one of nine comparisons, so not robust), but triple the false `serious`
+  labels (22 -> 71) and flag 20.3% of unharmed reports instead of 14.1%.
+  Rejected.
+- **Side finding, not adopted:** keeping negations and modals holds hurt
+  recall (94.8% -> 95.0%) while flagging fewer unharmed reports
+  (14.1% -> 12.5%). Each fold re-picks its cutoff, so this is the same recall
+  target at lower cost. Worth a proper test as a production change, including
+  October; nothing in `severity_model.py` was changed here.
+
+**B. A second-stage check on reports below the cutoff.** A second stage always
+flags more reports, so each is set against the production model with its
+cutoff lowered to the same per-month share of unharmed reports flagged.
+
+| Second stage | Unharmed flagged | Serious flagged | Lowered cutoff, same budget |
+|---|---|---|---|
+| None (production) | 14.1% | 297/303 | |
+| Rule: high-alert medication mentioned | 25.1% | 298 | 300 |
+| Rule: high-risk event mentioned | 18.7% | 299 | 299 |
+| Rule: either | 29.2% | 300 | 302 |
+| Learned serious-vs-rest detector | 22.0% | 302 | 299 |
+
+- The word-list rules never beat simply lowering the cutoff, and catch fewer
+  hurt cases overall at the same budget. Rejected. The lists were written
+  after reading the six missed reports, so even these numbers flatter them.
+- The learned detector (threshold picked on the cutoff month for 95% serious
+  recall) recovers 5 of the 6 misses, 3 more than a lowered cutoff at the
+  same budget (3 vs. 0 discordant cases, McNemar p = 0.25). Suggestive, not
+  established, and the price is 3,808 more flagged reports across the eight
+  months. It also catches fewer hurt cases overall than the lowered cutoff
+  (6,087 vs. 6,136 of 6,366). Not adopted.
+
+### Tested and rejected: grouping drug names (2026-10-13)
+
+`drug_name_groups.py`, same rolling setup. Results in
+`experiments/drug_name_groups_results.json`.
+
+The intake fields hold only 47 distinct medication names, and 23.4% of
+reports (26.8% of serious ones) mention one anywhere in the input text.
+Three ways of telling the model which drugs belong together:
+
+| Variant | Serious flagged | Labelled `serious` | Caught at 5% false alarms | Hurt recall | Unharmed flagged |
+|---|---|---|---|---|---|
+| Production | 297/303 | 157/303 | 276/303 | 94.8% | 14.1% |
+| Add hand-mapped class tokens (17 classes + high-alert) | 297 | 155 | 276 | 94.9% | 14.3% |
+| Replace drug names with class tokens | 297 | 159 | 278 | 94.8% | 14.2% |
+| Add context-cluster tokens (k-means, k=8, train months only) | 297 | 155 | 277 | 94.9% | 14.3% |
+
+No variant moves any serious-tier measure by more than 3 cases (McNemar
+p >= 0.5 throughout), and no triage flag changed for any serious case.
+Likely reasons: with 47 names the model already has enough examples to weight
+each drug separately, and in this synthetic data harm rates barely differ by
+drug (most sit within a few points of the training rate). The context
+clusters also do not recover pharmacology (one cluster mixes heparin, insulin,
+cephalosporins and venetoclax), which suggests the generator does not write
+drug-specific narratives. This could differ on real reports, where the drug
+vocabulary is far larger and misspelled.
+
 ---
 
 ## Event-type pipeline (teammate's `11-buckets` repo)

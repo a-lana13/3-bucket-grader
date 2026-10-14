@@ -1,0 +1,324 @@
+{
+  "feature_variants": {
+    "keep_stop_words": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 292,
+          "only_a": 5,
+          "only_b": 1,
+          "neither": 5,
+          "mcnemar_exact_p": 0.21875
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 147,
+          "only_a": 10,
+          "only_b": 7,
+          "neither": 139,
+          "mcnemar_exact_p": 0.629058837890625
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 274,
+          "only_a": 2,
+          "only_b": 7,
+          "neither": 20,
+          "mcnemar_exact_p": 0.1796875
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 1,
+          "neither": 11,
+          "mcnemar_exact_p": 1.0
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 2,
+          "mcnemar_exact_p": 0.5
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.9456487590323595,
+        "unharmed_flagged_at_cutoff": 0.11240221132783978,
+        "non_serious_labelled_serious": 18,
+        "serious_vs_unharmed_auroc": 0.9846397255429705
+      }
+    },
+    "keep_negation_modals": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 294,
+          "only_a": 3,
+          "only_b": 1,
+          "neither": 5,
+          "mcnemar_exact_p": 0.625
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 155,
+          "only_a": 2,
+          "only_b": 5,
+          "neither": 141,
+          "mcnemar_exact_p": 0.453125
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 275,
+          "only_a": 1,
+          "only_b": 5,
+          "neither": 22,
+          "mcnemar_exact_p": 0.21875
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 0,
+          "neither": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 1,
+          "neither": 11,
+          "mcnemar_exact_p": 1.0
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 2,
+          "mcnemar_exact_p": 0.5
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.9503612943763745,
+        "unharmed_flagged_at_cutoff": 0.12527380828204862,
+        "non_serious_labelled_serious": 19,
+        "serious_vs_unharmed_auroc": 0.985556683669397
+      }
+    },
+    "hedge_lexicon": {
+      "all_test_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 303,
+          "both": 294,
+          "only_a": 3,
+          "only_b": 5,
+          "neither": 1,
+          "mcnemar_exact_p": 0.7265625
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 303,
+          "both": 147,
+          "only_a": 10,
+          "only_b": 25,
+          "neither": 121,
+          "mcnemar_exact_p": 0.016673847800120715
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 303,
+          "both": 267,
+          "only_a": 9,
+          "only_b": 9,
+          "neither": 18,
+          "mcnemar_exact_p": 1.0
+        }
+      },
+      "natural_rate_months": {
+        "flagged_by_triage_cutoff": {
+          "n_serious": 36,
+          "both": 34,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 0,
+          "mcnemar_exact_p": 0.5
+        },
+        "labelled_serious_by_bucket": {
+          "n_serious": 36,
+          "both": 24,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 10,
+          "mcnemar_exact_p": 0.5
+        },
+        "caught_at_5pct_false_alarms": {
+          "n_serious": 36,
+          "both": 32,
+          "only_a": 0,
+          "only_b": 2,
+          "neither": 2,
+          "mcnemar_exact_p": 0.5
+        }
+      },
+      "costs_a": {
+        "hurt_recall_at_cutoff": 0.9476908576814326,
+        "unharmed_flagged_at_cutoff": 0.14123291957859602,
+        "non_serious_labelled_serious": 22,
+        "serious_vs_unharmed_auroc": 0.9827669478580899
+      },
+      "costs_b": {
+        "hurt_recall_at_cutoff": 0.9484762802387685,
+        "unharmed_flagged_at_cutoff": 0.20262855950766664,
+        "non_serious_labelled_serious": 71,
+        "serious_vs_unharmed_auroc": 0.9815266097380871
+      }
+    }
+  },
+  "second_stage": {
+    "rule_high_alert_medication": {
+      "reports_added_by_check": 5333,
+      "unharmed_flagged": {
+        "production": 0.14123291957859602,
+        "with_check": 0.2514029414832586
+      },
+      "serious_flagged": {
+        "production": "297/303",
+        "with_check": "298/303",
+        "lowered_cutoff_same_budget": "300/303"
+      },
+      "serious_flagged_natural_rate_months": {
+        "production": "34/36",
+        "with_check": "35/36",
+        "lowered_cutoff_same_budget": "35/36"
+      },
+      "hurt_flagged": {
+        "production": "6033/6366",
+        "with_check": "6085/6366",
+        "lowered_cutoff_same_budget": "6204/6366"
+      },
+      "check_vs_lowered_cutoff_on_serious": {
+        "n_serious": 303,
+        "both": 298,
+        "only_a": 2,
+        "only_b": 0,
+        "neither": 3,
+        "mcnemar_exact_p": 0.5
+      }
+    },
+    "rule_high_risk_event": {
+      "reports_added_by_check": 2237,
+      "unharmed_flagged": {
+        "production": 0.14123291957859602,
+        "with_check": 0.18725357254615627
+      },
+      "serious_flagged": {
+        "production": "297/303",
+        "with_check": "299/303",
+        "lowered_cutoff_same_budget": "299/303"
+      },
+      "serious_flagged_natural_rate_months": {
+        "production": "34/36",
+        "with_check": "34/36",
+        "lowered_cutoff_same_budget": "35/36"
+      },
+      "hurt_flagged": {
+        "production": "6033/6366",
+        "with_check": "6064/6366",
+        "lowered_cutoff_same_budget": "6128/6366"
+      },
+      "check_vs_lowered_cutoff_on_serious": {
+        "n_serious": 303,
+        "both": 298,
+        "only_a": 1,
+        "only_b": 1,
+        "neither": 3,
+        "mcnemar_exact_p": 1.0
+      }
+    },
+    "rule_either": {
+      "reports_added_by_check": 7329,
+      "unharmed_flagged": {
+        "production": 0.14123291957859602,
+        "with_check": 0.29245853760300405
+      },
+      "serious_flagged": {
+        "production": "297/303",
+        "with_check": "300/303",
+        "lowered_cutoff_same_budget": "302/303"
+      },
+      "serious_flagged_natural_rate_months": {
+        "production": "34/36",
+        "with_check": "35/36",
+        "lowered_cutoff_same_budget": "36/36"
+      },
+      "hurt_flagged": {
+        "production": "6033/6366",
+        "with_check": "6113/6366",
+        "lowered_cutoff_same_budget": "6230/6366"
+      },
+      "check_vs_lowered_cutoff_on_serious": {
+        "n_serious": 303,
+        "both": 300,
+        "only_a": 2,
+        "only_b": 0,
+        "neither": 1,
+        "mcnemar_exact_p": 0.5
+      }
+    },
+    "learned_serious_detector": {
+      "reports_added_by_check": 3808,
+      "unharmed_flagged": {
+        "production": 0.14123291957859602,
+        "with_check": 0.2195473036403463
+      },
+      "serious_flagged": {
+        "production": "297/303",
+        "with_check": "302/303",
+        "lowered_cutoff_same_budget": "299/303"
+      },
+      "serious_flagged_natural_rate_months": {
+        "production": "34/36",
+        "with_check": "35/36",
+        "lowered_cutoff_same_budget": "34/36"
+      },
+      "hurt_flagged": {
+        "production": "6033/6366",
+        "with_check": "6087/6366",
+        "lowered_cutoff_same_budget": "6136/6366"
+      },
+      "check_vs_lowered_cutoff_on_serious": {
+        "n_serious": 303,
+        "both": 299,
+        "only_a": 0,
+        "only_b": 3,
+        "neither": 1,
+        "mcnemar_exact_p": 0.25
+      }
+    }
+  }
+}
