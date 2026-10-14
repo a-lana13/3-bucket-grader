@@ -260,26 +260,41 @@ synthetic set.
 
 ## Open tasks
 
-### Code improvements
+### Potential code improvements
 
-- [x] **Add a prediction entry point.** `predict.py` loads `severity_model/`
-      and scores a CSV/parquet file, writing out grade, bucket, calibrated
-      triage probability and the flag.
-- [x] **Add tests for the safety-critical pieces.** `tests/` has `pytest`
-      checks for the excluded-column assertion, `Event No.` split decoding,
-      the grade → bucket mapping, `bucket_probs` summing to 1, and a
-      round-trip load of the saved model.
-- [x] **Separate production code from experiments.** `baseline_grader.py`,
-      `ordinal_vs_coarse.py`, `combined_mtl.py`, `augment_rare_grades.py`,
-      `finetune_distilbert.py`, `leakage_inflation_check.py` and
-      `longformer_colab.ipynb` now live in
-      `experiments/`, so it's obvious that `data_pipeline.py`,
-      `severity_model.py` and `severity_model_extended.py` are the pipeline.
-- [x] **Point `error_analysis.py` at the production model.** It was written
-      for the 3-bucket DistilBERT output. It now loads the saved 10-grade
-      model and reviews the harmed reports the triage cutoff misses, so the
-      false-negative review is repeatable on what's shipped. It moved back
-      to the repo root for that reason.
+- [ ] **Make results reproducible.** Retraining on another machine already
+      shifted the numbers slightly from the committed ones, and there is no
+      requirements file.
+      - Pin the dependency versions.
+      - Read the dataset path from an environment variable or argument
+        instead of a hardcoded path.
+      - Decide whether the regenerated `evaluation.json` or the documented
+        numbers are canonical.
+- [ ] **Tune the model.** The logistic regression and TF-IDF settings are
+      defaults and were never tuned on validation. Cheap things to try:
+      - Regularisation strength.
+      - Sublinear term frequency. The missed reports are about twice as long
+        as caught ones, which may be diluting the signal. That is a
+        hypothesis from 16 cases.
+      - Character n-grams.
+      - Encoding unit and service as separate features instead of mixing them
+        into the text.
+
+      Expect modest gains; the ranking is already strong (AUROC 0.986).
+- [ ] **Run a transformer on all 10 grades.** The only like-for-like test of
+      whether a stronger encoder beats TF-IDF (see the DistilBERT item under
+      Experiments). It needs a GPU session and the gain is uncertain. Compare
+      on the rolling evaluation, so the result on serious cases means
+      something.
+- [ ] **Put explanations in the `predict.py` output.**
+      `severity_model_extended.py` can already list the top terms behind a
+      score. Adding them per flagged report gives reviewers a reason to trust
+      or dismiss a flag, which matters when about 7 in 10 flags are false
+      alarms.
+- [ ] **Smaller code cleanup.** `severity_model_extended.py` and
+      `demo_predict()` each carry their own copy of the scoring logic.
+      Pointing them at one shared copy removes the risk of them drifting
+      apart. A CI job running the tests on each push is also cheap.
 
 ### Experiments
 
@@ -303,17 +318,6 @@ synthetic set.
       Bio_ClinicalBERT, jointly fine-tuned for event type and severity. The
       frozen-MiniLM version was too weak to show whether the event-type clue
       helps a stronger model.
-- [x] **Target the "quiet" serious misses.** Tested on the rolling evaluation
-      (`experiments/quiet_serious_misses.py`); nothing adopted. Hedge-phrase
-      features and high-risk word rules cost more false alarms than they
-      recover, and the rules do no better than lowering the cutoff. A separate
-      serious-case detector recovered 5 of the 6 misses but flags 22% of
-      unharmed reports instead of 14%, and its edge over a lowered cutoff
-      (3 cases) isn't statistically reliable. Still open: whether these cases
-      are real or label noise (see below).
-- [x] **Cluster drug names.** Tested (`experiments/drug_name_groups.py`); no
-      effect. Hand-mapped drug classes and context-based clusters each change
-      at most 3 of 303 serious cases on any measure.
 - [ ] **Keep negations and modals in the vocabulary.** The vectorizer's stop
       list removes "no", "not", "could" and "would". Keeping them left hurt
       recall unchanged (94.8% → 95.0%) while flagging fewer unharmed reports
